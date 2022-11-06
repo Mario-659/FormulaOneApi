@@ -26,66 +26,16 @@ INSERT INTO supplier ("name", "headquarters") VALUES ('Takata', 'Tokyo, Japan');
 INSERT INTO supplier ("name", "headquarters") VALUES ('Riedel Communications', 'Wuppertal, Germany');
 INSERT INTO supplier ("name", "headquarters") VALUES ('GS Yuasa', 'Kyoto, Japan');
 
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Mercedes-AMG Petronas F1 Team',
-        'Brackley, United Kingdom',
-        'Toto Wolff',
-        'Mike Elliott',
-        'W13');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Alfa Romeo F1 Team ORLEN',
-        'Hinwil, Switzerland',
-        'Frédéric Vasseur',
-        'Jan Monchaux',
-        'C42');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Aston Martin Aramco Cognizant F1 Team',
-        'Silverstone, United Kingdom',
-        'Mike Krack',
-        'Andrew Green',
-        'AMR22');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Williams Racing',
-        'Grove, United Kingdom',
-        'Jost Capito',
-        'François-Xavier Demaison',
-        'FW44');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('McLaren F1 Team',
-        'Woking, United Kingdom',
-        'Andreas Seidl',
-        'James Key',
-        'MCL36');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Scuderia AlphaTauri',
-        'Faenza, Italy',
-        'Franz Tost',
-        'Jody Egginton',
-        'AT03');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Scuderia Ferrari',
-        'Maranello, Italy',
-        'Mattia Binotto',
-        'Enrico Cardile',
-        'F1-75');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('BWT Alpine F1 Team',
-        'Enstone, United Kingdom',
-        'Otmar Szafnauer',
-        'Pat Fry',
-        'A522');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Haas F1 Team',
-        'Kannapolis, United States',
-        'Guenther Steiner',
-        'Simone Resta',
-        'VF-22');
-INSERT INTO team (name, city, leader, technical_leader, car_name)
-VALUES ('Oracle Red Bull Racing',
-        'Milton Keynes, United Kingdom',
-        'Christian Horner',
-        'Pierre Waché',
-        'RB18');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Mercedes-AMG Petronas F1 Team', 'Brackley, United Kingdom', 'Toto Wolff', 'Mike Elliott','W13');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Alfa Romeo F1 Team ORLEN','Hinwil, Switzerland','Frédéric Vasseur','Jan Monchaux','C42');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Aston Martin Aramco Cognizant F1 Team','Silverstone, United Kingdom','Mike Krack','Andrew Green','AMR22');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Williams Racing','Grove, United Kingdom','Jost Capito','François-Xavier Demaison','FW44');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('McLaren F1 Team','Woking, United Kingdom','Andreas Seidl','James Key','MCL36');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Scuderia AlphaTauri','Faenza, Italy','Franz Tost','Jody Egginton','AT03');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Scuderia Ferrari','Maranello, Italy','Mattia Binotto','Enrico Cardile','F1-75');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('BWT Alpine F1 Team','Enstone, United Kingdom','Otmar Szafnauer','Pat Fry','A522');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Haas F1 Team','Kannapolis, United States','Guenther Steiner','Simone Resta','VF-22');
+INSERT INTO team (name, city, leader, technical_leader, car_name) VALUES ('Oracle Red Bull Racing','Milton Keynes, United Kingdom','Christian Horner','Pierre Waché','RB18');
 
 INSERT INTO track ("track_name", "continent", "localisation") VALUES ('Albert Park Grand Prix Circuit', 'Australia', 'Australia');
 INSERT INTO track ("track_name", "continent", "localisation") VALUES ('Circuit of the Americas', 'North America', 'USA');
