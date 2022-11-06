@@ -34,3 +34,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# docker mount volue
+data
