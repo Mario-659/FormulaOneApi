@@ -44,6 +44,7 @@ API for DMS2 application project
 * [Database](#DB)
   * [Database Management System](#DBMS)
   * [Entity Relationships Diagram](#ERD)
+  * [Swagger-ui](#Swagger)
 
 <!-- DB -->
 ## Database
@@ -59,6 +60,14 @@ Software for creating and managing databases used in the application will be Pos
 ### Entity Relationships Diagram
 
 ![erd](https://user-images.githubusercontent.com/76202883/198844534-9309a6e8-2fa0-4003-bfb5-06813f02db30.png)
+
+
+<!-- Swagger -->
+### Swagger-ui
+
+To see swagger endpoint documentation run the spring boot application and go to [http://localhost:8080/api/v1/swagger-ui/index.html#/](http://localhost:8080/swagger-ui/index.html#/)
+
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
