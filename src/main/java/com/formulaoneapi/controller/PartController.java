@@ -2,11 +2,13 @@ package com.formulaoneapi.controller;
 
 import com.formulaoneapi.model.Part;
 import com.formulaoneapi.service.PartService;
+import com.formulaoneapi.validation.IdValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import javax.validation.groups.Default;
 
 @RequiredArgsConstructor
 @RestController
@@ -31,7 +33,10 @@ public class PartController {
     }
 
     @PutMapping("/{name}")
-    public Part updatePart(@PathVariable String name, @RequestBody Part part) {
+    public Part updatePart(
+            @PathVariable String name,
+            @Validated(Default.class) @RequestBody Part part)
+    {
         part.setName(name);
 
         return partService.update(part);
@@ -39,7 +44,7 @@ public class PartController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Part createPart(@RequestBody Part part) {
+    public Part createPart(@Validated({IdValidation.class, Default.class}) @RequestBody Part part) {
         return partService.save(part);
     }
 }
