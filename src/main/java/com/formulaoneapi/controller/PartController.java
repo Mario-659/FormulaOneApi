@@ -2,7 +2,6 @@ package com.formulaoneapi.controller;
 
 import com.formulaoneapi.model.Part;
 import com.formulaoneapi.service.PartService;
-import com.formulaoneapi.validation.IdValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -22,29 +21,29 @@ public class PartController {
         return partService.getAll();
     }
 
-    @GetMapping("/{name}")
-    public Part getPart(@PathVariable String name) {
-        return partService.get(name);
+    @GetMapping("/{id}")
+    public Part getPart(@PathVariable int id) {
+        return partService.get(id);
     }
 
-    @DeleteMapping("/{name}")
-    public void deletePart(@PathVariable String name) {
-        partService.remove(name);
+    @DeleteMapping("/{id}")
+    public void deletePart(@PathVariable int id) {
+        partService.remove(id);
     }
 
-    @PutMapping("/{name}")
+    @PutMapping("/{id}")
     public Part updatePart(
-            @PathVariable String name,
+            @PathVariable int id,
             @Validated(Default.class) @RequestBody Part part)
     {
-        part.setName(name);
+        part.setId(id);
 
         return partService.update(part);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Part createPart(@Validated({IdValidation.class, Default.class}) @RequestBody Part part) {
+    public Part createPart(@Validated @RequestBody Part part) {
         return partService.save(part);
     }
 }

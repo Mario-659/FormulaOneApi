@@ -1,13 +1,9 @@
 package com.formulaoneapi.model;
 
-import com.formulaoneapi.validation.IdValidation;
 import com.formulaoneapi.validation.IsNotBeforeToday;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,8 +14,11 @@ import java.time.LocalDate;
 @Entity
 @Data
 public class Part {
-    @Id
-    @NotBlank(message = "Name cannot be blank", groups = IdValidation.class)
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @NotBlank(message = "Name cannot be blank")
     private String name;
 
     @ManyToOne

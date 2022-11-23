@@ -4,7 +4,6 @@ import com.formulaoneapi.model.Part;
 import com.formulaoneapi.repository.PartRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +12,6 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-@Log4j2
 public class PartService {
 
     private final PartRepository partRepository;
@@ -22,34 +20,30 @@ public class PartService {
         return partRepository.findAll();
     }
 
-    public Part get(String name) {
+    public Part get(int id) {
         return partRepository
-                .findById(name)
+                .findById(id)
                 .orElseThrow(
-                        () -> new NoSuchElementException("Part with name " + name + " not found")
+                        () -> new NoSuchElementException(String.format("Part with id '%d' not found", id))
                 );
     }
 
-    public void remove(String name) {
-        partRepository.deleteById(name);
+    public void remove(int id) {
+        partRepository.deleteById(id);
     }
 
     @Transactional
     public Part update(Part part) {
-        String name = part.getName();
-        if (!partRepository.existsById(name)) {
-            throw new NoSuchElementException(String.format("Part with name '%s' not found", name));
+        int id = part.getId();
+        if (!partRepository.existsById(id)) {
+            throw new NoSuchElementException(String.format("Part with id '%d' not found", id));
         }
 
-        part.setName(name);
         return partRepository.save(part);
     }
 
-    @Transactional
     public Part save(Part part) {
-        if (partRepository.existsById(part.getName())) {
-            throw new IllegalArgumentException(String.format("Part with name '%s' already exists", part.getName()));
-        }
+        part.setId(null);
 
         return partRepository.save(part);
     }

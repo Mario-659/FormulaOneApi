@@ -24,6 +24,7 @@ I decided to return 422
 ```json
 [
       {
+        "id": 1,
         "name": "myBrakes",
         "manufacturer": {
           "name": "Xtrac",
@@ -36,6 +37,7 @@ I decided to return 422
         "estimatedReplacementDate": "2022-12-23"
       },
       {
+        "id": 2,
         "name": "myBrakes second",
         "manufacturer": {
           "name": "Xtrac",
@@ -50,10 +52,11 @@ I decided to return 422
 ]
 ```
 
-### GET `{{spring-path}}/parts/{validId}`
+### GET `{{spring-path}}/parts/{existingId}`
 200
 ```json
 {
+    "id": 3,
     "name": "breaks",
     "manufacturer": {
         "name": "Xtrac",
@@ -67,11 +70,11 @@ I decided to return 422
 }
 ```
 
-### GET `{{spring-path}}/parts/{invalidId}`
+### GET `{{spring-path}}/parts/{nonExistingId}`
 404
 ```json
 {
-    "message": "Part with name kfjdsal not found"
+    "message": "Part with id '3' not found"
 }
 ```
 
@@ -97,6 +100,7 @@ Response
 201
 ```json
 {
+    "id": 5,
     "name": "myBrakes",
     "manufacturer": {
         "name": "Xtrac",
@@ -110,7 +114,7 @@ Response
 }
 ```
 
-### POST `{{spring-path}}/parts/{name}`
+### PUT `{{spring-path}}/parts/{id}`
 
 Request body:
 ```json
@@ -126,12 +130,13 @@ Request body:
 }
 ```
 If some data is missing or is invalid - return 422 code.
-It will not create new Part with `name` from path is not in repository.
+It will not create new Part with `id` from path when it is not in repository.
 
 Response
 200
 ```json
 {
+    "id": 1,
     "name": "myBrakes",
     "manufacturer": {
         "name": "Xtrac",
