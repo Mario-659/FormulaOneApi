@@ -29,6 +29,9 @@ public class PartService {
     }
 
     public void remove(int id) {
+        if (!partRepository.existsById(id)) {
+            throw new NoSuchElementException(String.format("Part with id '%d' not found", id));
+        }
         partRepository.deleteById(id);
     }
 
