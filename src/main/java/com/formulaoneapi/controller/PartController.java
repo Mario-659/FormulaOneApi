@@ -1,29 +1,49 @@
 package com.formulaoneapi.controller;
 
 import com.formulaoneapi.model.Part;
+import com.formulaoneapi.service.PartService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.groups.Default;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/parts")
 public class PartController {
 
-    @GetMapping("/")
-    public List<Part> getAllParts() {
-        return List.of();
+    private final PartService partService;
+
+    @GetMapping
+    public Iterable<Part> getAllParts() {
+        return partService.getAll();
     }
 
-    @GetMapping("/{name}")
-    public Part getPart(@PathVariable String name) {
-        return new Part();
+    @GetMapping("/{id}")
+    public Part getPart(@PathVariable int id) {
+        return partService.get(id);
     }
 
-    @DeleteMapping("/{name}")
-    public void deletePart(@PathVariable String name) { }
+    @DeleteMapping("/{id}")
+    public void deletePart(@PathVariable int id) {
+        partService.remove(id);
+    }
 
-    @PutMapping("/{name}")
-    public Part updatePart(@PathVariable String name) {
-        return new Part();
+    @PutMapping("/{id}")
+    public Part updatePart(
+            @PathVariable int id,
+            @Validated(Default.class) @RequestBody Part part)
+    {
+        part.setId(id);
+
+        return partService.update(part);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Part createPart(@Validated @RequestBody Part part) {
+        return partService.save(part);
     }
 }

@@ -486,3 +486,9 @@ INSERT INTO season_result (id, points, position, driver_number, grand_prix_grand
 INSERT INTO season_result (id, points, position, driver_number, grand_prix_grand_prix) VALUES (378,0,18,18,'United States Grand Prix');
 INSERT INTO season_result (id, points, position, driver_number, grand_prix_grand_prix) VALUES (379,0,19,77,'United States Grand Prix');
 INSERT INTO season_result (id, points, position, driver_number, grand_prix_grand_prix) VALUES (380,0,20,55,'United States Grand Prix');
+
+INSERT INTO part (id, name, cost, estimated_replacement_date, car_name, manufacturer_name) VALUES (nextval('public.hibernate_sequence'), 'Wheels', 3000, '2023-03-20', 'W13', 'BBS');
+INSERT INTO part (id, name, cost, estimated_replacement_date, car_name, manufacturer_name) VALUES (nextval('public.hibernate_sequence'), 'Tires', 3000, '2023-03-25', 'C42', 'Pirelli');
+INSERT INTO part (id, name, cost, estimated_replacement_date, car_name, manufacturer_name) VALUES (nextval('public.hibernate_sequence'), 'Clutch', 3000, '2023-05-10', 'W13', 'Mercedes');
+INSERT INTO part (id, name, cost, estimated_replacement_date, car_name, manufacturer_name) VALUES (nextval('public.hibernate_sequence'), 'Suspension', 3000, '2023-03-22', 'W13', 'Mercedes');
+INSERT INTO part (id, name, cost, estimated_replacement_date, car_name, manufacturer_name) VALUES (nextval('public.hibernate_sequence'), 'Transmission', 3000, '2023-03-20', 'AMR22', 'Xtrac');

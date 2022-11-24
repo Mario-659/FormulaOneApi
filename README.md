@@ -65,7 +65,7 @@ Software for creating and managing databases used in the application will be Pos
 <!-- Swagger -->
 ### Swagger-ui
 
-To see swagger endpoint documentation run the spring boot application and go to [http://localhost:8080/api/v1/swagger-ui/index.html#/](http://localhost:8080/swagger-ui/index.html#/)
+To see swagger endpoint documentation run the spring boot application and go to [http://localhost:8080/api/v1/swagger-ui/index.html#/](http://localhost:8080/api/v1/swagger-ui/index.html#/)
 
 
 
