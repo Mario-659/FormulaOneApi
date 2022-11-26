@@ -1,5 +1,7 @@
 package com.formulaoneapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,10 +17,12 @@ public class SeasonResult {
 
     @JoinColumn
     @ManyToOne
+    @JsonIgnoreProperties({"team", "nationality", "dateOfBirth"})
     private Driver driver;
 
     @JoinColumn
     @ManyToOne
+    @JsonIgnoreProperties({"track"})
     private GrandPrix grandPrix;
 
     private int position;
