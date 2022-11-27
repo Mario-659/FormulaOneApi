@@ -1,5 +1,6 @@
 package com.formulaoneapi.controller;
 
+import com.formulaoneapi.model.Driver;
 import com.formulaoneapi.model.SeasonResult;
 import com.formulaoneapi.model.Team;
 import com.formulaoneapi.service.TeamService;
@@ -30,6 +31,11 @@ public class TeamController {
     @GetMapping("/{name}/season-results")
     public Iterable<SeasonResult> getTeamResults(@PathVariable String name) {
         return teamService.getSeasonResults(name);
+    }
+
+    @GetMapping("/{name}/drivers")
+    public Iterable<Driver> getDrivers(@PathVariable String name) {
+        return teamService.getDrivers(name);
     }
 
     @PostMapping

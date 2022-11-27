@@ -1,9 +1,11 @@
 package com.formulaoneapi.service;
 
 import com.formulaoneapi.exception.ElementAlreadyExistsException;
+import com.formulaoneapi.model.Driver;
 import com.formulaoneapi.model.SeasonResult;
 import com.formulaoneapi.model.Team;
 import com.formulaoneapi.repository.CarRepository;
+import com.formulaoneapi.repository.DriverRepository;
 import com.formulaoneapi.repository.SeasonResultRepository;
 import com.formulaoneapi.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class TeamService {
     private final TeamRepository teamRepository;
     private final SeasonResultRepository resultRepository;
     private final CarRepository carRepository;
+    private final DriverRepository driverRepository;
 
     public Iterable<Team> getAll() {
         return teamRepository.findAll();
@@ -51,6 +54,13 @@ public class TeamService {
         assertTeamExists(name);
 
         return resultRepository.getAllByTeam(name);
+    }
+
+    @Transactional
+    public Iterable<Driver> getDrivers(String name) {
+        assertTeamExists(name);
+
+        return driverRepository.findDriversByTeamName(name);
     }
 
     private void assertTeamExists(String name) {
