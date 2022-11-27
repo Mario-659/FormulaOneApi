@@ -1,5 +1,7 @@
 package com.formulaoneapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -22,6 +24,7 @@ public class Driver {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnoreProperties({"leader", "technicalLeader", "car", "city"})
     private Team team;
 
     private LocalDate dateOfBirth;
