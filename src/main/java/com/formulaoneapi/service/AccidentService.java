@@ -1,5 +1,6 @@
 package com.formulaoneapi.service;
 
+import com.formulaoneapi.exception.ElementAlreadyExistsException;
 import com.formulaoneapi.model.Accident;
 import com.formulaoneapi.repository.AccidentRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,23 +25,33 @@ public class AccidentService {
                 );
     }
 
+    @Transactional
     public void remove(String name) {
-        if (!accidentRepository.existsById(name))
-            throw new NoSuchElementException(String.format("Accident type '%s' not found", name));
+        assertAccidentDoesNotExist(name);
         accidentRepository.deleteById(name);
     }
 
     @Transactional
     public Accident update(Accident accident) {
-        String name = accident.getName();
-        if (!accidentRepository.existsById(name)) {
-            throw new NoSuchElementException(String.format("Accident type '%s' not found", name));
-        }
-
+        assertAccidentDoesNotExist(accident.getName());
         return accidentRepository.save(accident);
     }
 
     public Accident save(Accident accident) {
+        assertAccidentExists(accident.getName());
         return accidentRepository.save(accident);
     }
+
+    private void assertAccidentExists(String name) {
+        if (!accidentRepository.existsById(name)) {
+            throw new NoSuchElementException(String.format("Accident type '%s' not found", name));
+        }
+    }
+
+    private void assertAccidentDoesNotExist(String name) {
+        if (accidentRepository.existsById(name)) {
+            throw new ElementAlreadyExistsException(String.format("Accident type '%s' already exists", name));
+        }
+    }
+
 }
