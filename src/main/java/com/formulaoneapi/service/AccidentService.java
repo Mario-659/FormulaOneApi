@@ -42,13 +42,13 @@ public class AccidentService {
         return accidentRepository.save(accident);
     }
 
-    private void assertAccidentExists(String name) {
+    private void assertAccidentDoesNotExist(String name) {
         if (!accidentRepository.existsById(name)) {
             throw new NoSuchElementException(String.format("Accident type '%s' not found", name));
         }
     }
 
-    private void assertAccidentDoesNotExist(String name) {
+    private void assertAccidentExists(String name) {
         if (accidentRepository.existsById(name)) {
             throw new ElementAlreadyExistsException(String.format("Accident type '%s' already exists", name));
         }
