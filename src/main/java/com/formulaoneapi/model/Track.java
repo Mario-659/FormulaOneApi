@@ -1,17 +1,40 @@
 package com.formulaoneapi.model;
 
+import com.formulaoneapi.validation.ContinentExists;
+import com.formulaoneapi.validation.CountryExists;
+import com.formulaoneapi.validation.groups.IdValidation;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
 public class Track {
     @Id
+    @NotBlank(groups = {IdValidation.class}, message = "Name cannot be blank")
+    @Size(
+            max = 255,
+            message = "Track name must not exceed 255 characters",
+            groups = {IdValidation.class} )
     private String trackName;
 
+    @CountryExists(message = "Country does not exists or is misspelled")
+    @NotBlank(groups = {IdValidation.class}, message = "Localisation cannot be blank")
+    @Size(
+            max = 56,
+            message = "Localisation must not exceed 56 characters",
+            groups = {IdValidation.class} )
     private String localisation;
 
+    @ContinentExists(message = "Continent does not exists, available values:" +
+            "<Europe, Asia, Africa, Australia, South America, North America, Antarctica>")
+    @NotBlank(groups = {IdValidation.class}, message = "Continent cannot be blank")
+    @Size(
+            max = 20,
+            message = "Continent must not exceed 20 characters",
+            groups = {IdValidation.class} )
     private String continent;
 }
