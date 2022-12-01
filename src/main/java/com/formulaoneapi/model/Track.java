@@ -21,20 +21,17 @@ public class Track {
             groups = {IdValidation.class} )
     private String trackName;
 
-    @CountryExists(message = "Country does not exists or is misspelled")
-    @NotBlank(groups = {IdValidation.class}, message = "Localisation cannot be blank")
+    @CountryExists(message = "Country does not exist")
+    @NotBlank( message = "Localisation cannot be blank")
     @Size(
             max = 56,
-            message = "Localisation must not exceed 56 characters",
-            groups = {IdValidation.class} )
+            message = "Localisation must not exceed 56 characters" )
     private String localisation;
 
-    @ContinentExists(message = "Continent does not exists, available values:" +
-            "<Europe, Asia, Africa, Australia, South America, North America, Antarctica>")
-    @NotBlank(groups = {IdValidation.class}, message = "Continent cannot be blank")
+    @ContinentExists(message = "Continent does not exist")
+    @NotBlank( message = "Continent cannot be blank")
     @Size(
             max = 20,
-            message = "Continent must not exceed 20 characters",
-            groups = {IdValidation.class} )
+            message = "Continent must not exceed 20 characters" )
     private String continent;
 }
