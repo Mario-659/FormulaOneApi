@@ -27,7 +27,7 @@ public class CountryValidatorTest {
     }
 
     @Test
-    public void continentDetectCaseSensitiveMatch() {
+    public void countryDetectCaseSensitiveMatch() {
         String c1 = "PolAND";
         assertTrue(validator.isValid(c1, null));
         String c2 = "peRU";
