@@ -11,9 +11,6 @@ on:
   push:
     branches:
       - '*'
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
@@ -28,6 +25,5 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: tests
-        run: ./gradlew test --tests "com.formulaoneapi.validation.*"
-
+      - name: unit tests
+        run: ./gradlew test

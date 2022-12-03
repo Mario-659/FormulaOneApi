@@ -39,8 +39,4 @@ public class AccidentController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Accident createAccident(@Validated({IdValidation.class, Default.class}) @RequestBody Accident accident) { return accidentService.save(accident); }
-
-
-
-
 }
