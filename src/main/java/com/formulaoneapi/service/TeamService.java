@@ -76,7 +76,10 @@ public class TeamService {
     }
 
     private void assertCarExists(String name) {
-        if (!carRepository.existsById(name)) {
+        if(name == null) {
+            throw new IllegalArgumentException("Name of the car cannot be null");
+        }
+        else if (!carRepository.existsById(name)) {
             throw new IllegalArgumentException(String.format("Car with name '%s' does not exist", name));
         }
     }
