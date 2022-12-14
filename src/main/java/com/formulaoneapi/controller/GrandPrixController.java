@@ -30,4 +30,10 @@ public class GrandPrixController {
     public GrandPrix createGrandPrix(@Validated({IdValidation.class, Default.class}) @RequestBody GrandPrix grandPrix) {
         return grandPrixService.save(grandPrix);
     }
+
+    @PutMapping("/{name}")
+    public GrandPrix updateGrandPrix(@Validated @RequestBody GrandPrix grandPrix, @PathVariable String name) {
+        grandPrix.setGrandPrix(name);
+        return grandPrixService.update(grandPrix);
+    }
 }

@@ -33,6 +33,12 @@ public class GrandPrixService {
         return grandPrixRepository.save(grandPrix);
     }
 
+    public GrandPrix update(GrandPrix grandPrix) {
+        assertTrackExists(grandPrix.getTrack().getTrackName());
+        assertGrandPrixExists(grandPrix.getGrandPrix());
+        return grandPrixRepository.save(grandPrix);
+    }
+
     private void assertTrackExists(String name) {
         if(name == null) {
             throw new IllegalArgumentException("Name of the track cannot be null");
@@ -45,6 +51,12 @@ public class GrandPrixService {
     private void assertGrandPrixDoesNotExist(String name) {
         if(grandPrixRepository.existsById(name)) {
             throw new ElementAlreadyExistsException(String.format("Grand Prix '%s' already exists", name));
+        }
+    }
+
+    private void assertGrandPrixExists(String name) {
+        if(!grandPrixRepository.existsById(name)) {
+            throw new NoSuchElementException(String.format("Grand Prix '%s' not found", name));
         }
     }
 }
