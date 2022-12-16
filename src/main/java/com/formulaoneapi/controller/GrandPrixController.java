@@ -1,21 +1,39 @@
 package com.formulaoneapi.controller;
 
 import com.formulaoneapi.model.GrandPrix;
+import com.formulaoneapi.service.GrandPrixService;
+import com.formulaoneapi.validation.groups.IdValidation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.groups.Default;
 
 @RestController
 @RequestMapping("/grand-prix")
+@RequiredArgsConstructor
 public class GrandPrixController {
 
-    @GetMapping("/")
-    public List<GrandPrix> getAllGrandPrix() {
-        return List.of();
+    private final GrandPrixService grandPrixService;
+
+    @GetMapping
+    public Iterable<GrandPrix> getAllGrandPrix() {
+        return grandPrixService.getAll();
     }
 
-    @PostMapping("/")
-    public GrandPrix createGrandPrix(@RequestBody GrandPrix grandPrix) {
-        return new GrandPrix();
+    @GetMapping("/{name}")
+    public GrandPrix get(@PathVariable String name) {
+        return grandPrixService.get(name);
+    }
+
+    @PostMapping
+    public GrandPrix createGrandPrix(@Validated({IdValidation.class, Default.class}) @RequestBody GrandPrix grandPrix) {
+        return grandPrixService.save(grandPrix);
+    }
+
+    @PutMapping("/{name}")
+    public GrandPrix updateGrandPrix(@Validated @RequestBody GrandPrix grandPrix, @PathVariable String name) {
+        grandPrix.setGrandPrix(name);
+        return grandPrixService.update(grandPrix);
     }
 }

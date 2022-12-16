@@ -27,31 +27,30 @@ public class AccidentService {
 
     @Transactional
     public void remove(String name) {
-        assertAccidentDoesNotExist(name);
+        assertAccidentExists(name);
         accidentRepository.deleteById(name);
     }
 
     @Transactional
     public Accident update(Accident accident) {
-        assertAccidentDoesNotExist(accident.getName());
-        return accidentRepository.save(accident);
-    }
-
-    public Accident save(Accident accident) {
         assertAccidentExists(accident.getName());
         return accidentRepository.save(accident);
     }
 
-    private void assertAccidentDoesNotExist(String name) {
+    public Accident save(Accident accident) {
+        assertAccidentDoesNotExist(accident.getName());
+        return accidentRepository.save(accident);
+    }
+
+    private void assertAccidentExists(String name) {
         if (!accidentRepository.existsById(name)) {
             throw new NoSuchElementException(String.format("Accident type '%s' not found", name));
         }
     }
 
-    private void assertAccidentExists(String name) {
+    private void assertAccidentDoesNotExist(String name) {
         if (accidentRepository.existsById(name)) {
             throw new ElementAlreadyExistsException(String.format("Accident type '%s' already exists", name));
         }
     }
-
 }
