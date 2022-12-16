@@ -32,11 +32,6 @@ public class SupplierController {
         return supplierService.save(supplier);
     }
 
-    @DeleteMapping("/{name}")
-    public void deleteSupplier(@PathVariable String name) {
-        supplierService.delete(name);
-    }
-
     @PutMapping("/{name}")
     public Supplier updateSupplier(@Validated @RequestBody Supplier supplier, @PathVariable String name) {
         supplier.setName(name);

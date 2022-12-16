@@ -32,11 +32,6 @@ public class SupplierService {
         return supplierRepository.save(supplier);
     }
 
-    public void delete(String name) {
-        assertSupplierExists(name);
-        supplierRepository.deleteById(name);
-    }
-
     public Iterable<Part> getParts(String supplierName) {
         return partRepository.getAllByManufacturer_Name(supplierName);
     }
