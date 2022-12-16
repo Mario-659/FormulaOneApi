@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PartRepository extends CrudRepository<Part, Integer> { }
+public interface PartRepository extends CrudRepository<Part, Integer> {
+    Iterable<Part> getAllByManufacturer_Name(String manufacturer);
+}
