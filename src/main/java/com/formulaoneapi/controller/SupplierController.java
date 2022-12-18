@@ -2,36 +2,44 @@ package com.formulaoneapi.controller;
 
 import com.formulaoneapi.model.Part;
 import com.formulaoneapi.model.Supplier;
+import com.formulaoneapi.service.SupplierService;
+import com.formulaoneapi.validation.groups.IdValidation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.groups.Default;
+
 
 @RestController
 @RequestMapping("/suppliers")
+@RequiredArgsConstructor
 public class SupplierController {
+    private final SupplierService supplierService;
 
-    @GetMapping("/")
-    public List<Supplier> getAllSuppliers() {
-        return List.of();
-    }
-
-    @PostMapping("/")
-    public Supplier saveSupplier(@RequestBody Supplier supplier) {
-        return new Supplier();
+    @GetMapping
+    public Iterable<Supplier> getAllSuppliers() {
+        return supplierService.getAll();
     }
 
     @GetMapping("/{name}")
     public Supplier getSupplier(@PathVariable String name) {
-        return new Supplier();
+        return supplierService.get(name);
     }
 
-    @DeleteMapping("/{name}")
-    public void deleteSupplier(@PathVariable String name) {
-        return;
+    @PostMapping
+    public Supplier saveSupplier(@Validated({IdValidation.class, Default.class}) @RequestBody Supplier supplier) {
+        return supplierService.save(supplier);
+    }
+
+    @PutMapping("/{name}")
+    public Supplier updateSupplier(@Validated @RequestBody Supplier supplier, @PathVariable String name) {
+        supplier.setName(name);
+        return supplierService.update(supplier);
     }
 
     @GetMapping("/{name}/parts")
-    public List<Part> getSuppliersParts(@PathVariable String name) {
-        return List.of();
+    public Iterable<Part> getSuppliersParts(@PathVariable String name) {
+        return supplierService.getParts(name);
     }
 }
