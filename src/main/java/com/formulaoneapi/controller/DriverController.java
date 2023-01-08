@@ -3,36 +3,45 @@ package com.formulaoneapi.controller;
 import com.formulaoneapi.model.Driver;
 import com.formulaoneapi.model.DriverAccident;
 import com.formulaoneapi.model.SeasonResult;
+import com.formulaoneapi.service.DriverService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/drivers")
+@RequiredArgsConstructor
 public class DriverController {
 
-    @GetMapping("/")
-    public List<Driver> getAllDrivers() {
-        return List.of();
+    private final DriverService driverService;
+
+    @GetMapping
+    public Iterable<Driver> getAllDrivers() {
+        return driverService.getAll();
     }
 
-    @PostMapping("/")
+    @PostMapping
     public Driver saveDriver(@RequestBody Driver driver) {
-        return new Driver();
+        return driverService.save(driver);
     }
 
     @GetMapping("/{number}")
     public Driver getDriver(@PathVariable int number) {
-        return new Driver();
+        return driverService.get(number);
+    }
+
+    @PutMapping("/{number}")
+    public Driver updateDriver(@PathVariable int number, @RequestBody Driver driver) {
+        driver.setNumber(number);
+        return driverService.update(driver);
     }
 
     @GetMapping("/{number}/accidents")
-    public List<DriverAccident> getDriverAccidents (@PathVariable int number) {
-        return List.of();
+    public Iterable<DriverAccident> getDriverAccidents (@PathVariable int number) {
+        return driverService.getAccidents(number);
     }
 
     @GetMapping("/{number}/season-results")
-    public List<SeasonResult> getDriverResults (@PathVariable int number) {
-        return List.of();
+    public Iterable<SeasonResult> getDriverResults (@PathVariable int number) {
+        return driverService.getResults(number);
     }
 }
