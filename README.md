@@ -23,7 +23,7 @@
 <h3 align="center">F1 API</h3>
 
 <p align="center">
-API for DMS2 application project
+API for DMS2 & SE application project
 <br />
 <a href="https://github.com/Mario-659/FormulaOneApi"><strong>Explore the docs »</strong></a>
 <br />
@@ -41,33 +41,76 @@ API for DMS2 application project
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [Database](#DB)
-  * [Database Management System](#DBMS)
-  * [Entity Relationships Diagram](#ERD)
-  * [Swagger-ui](#Swagger)
+* [Getting Started](#getting-started)
+* [About the Project](#about-the-project)
+  * [Built With](#built-with)
+* [Getting Started](#getting-started)
+  * [Installation](#installation)
+* [Endpoint Documentations](#endpoint-documentations)
 
-<!-- DB -->
-## Database
-<!-- DBMS -->
-### Database Management System
-Software for creating and managing databases used in the application will be PostgreSQL - high quality
-, open source, and cost-effective option running in a Docker container as an underlying service.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-![postgres](https://user-images.githubusercontent.com/76202883/198844297-44967aed-3a49-44e3-b795-2d39b8a8e1dc.png)
+Database API used by application for Formula 1 team.
 
+<!-- GETTING STARTED -->
+## Getting Started
 
-<!-- ERD -->
-### Entity Relationships Diagram
+To get a local copy up and running follow these simple steps.
 
-![erd](https://user-images.githubusercontent.com/76202883/198844534-9309a6e8-2fa0-4003-bfb5-06813f02db30.png)
+### Prerequisites
 
+To run API make sure you have Java SE 17 installed. Application requires 
+PostgreSQL Database Management System for data storage for this purpose you can use 
+local DMS installation or Docker service.
 
-<!-- Swagger -->
-### Swagger-ui
+### Installation (Docker) - Linux
+
+1. Clone the repo
+```sh
+git clone https://github.com/Mario-659/FormulaOneApi.git && cd FormulaOneApi
+```
+2. Make sure Docker daemon is up and running  
+3. Export environment variables needed for container set up or modify Intelij configuration options:
+```sh
+export POSTGRES_USER=postgres
+export POSTGRES_PASSWORD=pass
+export POSTGRES_DB=f1api
+--------------------------
+export WORKING_DIR  # optional parameter used for postgres data storage (without every time initialization)
+```
+4. Run database on Docker container in detached mode
+```sh
+docker-compose up -d
+```
+5. Set up environment variables needed for API-Docker connection. 
+```sh
+export POSTGRES_URL=jdbc:postgresql://localhost:5432/{POSTGRES_DB}
+export POSTGRES_USERNAME=pass  # has to match with POSTGRES_USER
+```
+6. Build an run project using Gradle tasks (Intelij)
+7. Application should create connection and initialize database from predefined `import.sql` file
+8. Once app is running without any errors, do not close program. API is listening for requests.
+9. Test API with simple request like `http://localhost:8080/api/v1/drivers/23` output should looks like this:
+```sh
+// http://localhost:8080/api/v1/drivers/23
+
+{
+  "number": 23,
+  "firstName": "Alexander",
+  "lastName": "Albon",
+  "nationality": "Thai",
+  "team": {
+    "name": "Williams Racing"
+  },
+  "dateOfBirth": "1996-03-23"
+}
+```
+
+<!-- Endpoint Documentations -->
+### Endpoint Documentations
 
 To see swagger endpoint documentation run the spring boot application and go to [http://localhost:8080/api/v1/swagger-ui/index.html#/](http://localhost:8080/api/v1/swagger-ui/index.html#/)
-
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
