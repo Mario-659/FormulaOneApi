@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,6 +20,9 @@ public class Part {
     private Integer id;
 
     @NotBlank(message = "Name cannot be blank")
+    @Size(
+            max = 255,
+            message = "Part name must not exceed 255 characters")
     private String name;
 
     @ManyToOne
@@ -35,6 +39,7 @@ public class Part {
     @DecimalMin(value = "0.00", message = "Cost must be equal or greater than 0.00")
     private BigDecimal cost;
 
+    @NotNull(message = "Estimated Replacement Date cannot be null")
     @IsNotBeforeToday(message = "ERD must be equal or greater that now")
     private LocalDate estimatedReplacementDate;
 }
