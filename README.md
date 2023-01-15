@@ -106,6 +106,10 @@ export POSTGRES_USERNAME=pass  # has to match with POSTGRES_USER
   "dateOfBirth": "1996-03-23"
 }
 ```
+<!-- Demo -->
+### Demo
+
+https://user-images.githubusercontent.com/78920002/212569160-d55fc9fc-9ab9-44cc-a28a-7dd468768612.mp4
 
 <!-- Endpoint Documentations -->
 ### Endpoint Documentations
