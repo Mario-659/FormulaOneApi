@@ -3,36 +3,50 @@ package com.formulaoneapi.controller;
 import com.formulaoneapi.model.Driver;
 import com.formulaoneapi.model.DriverAccident;
 import com.formulaoneapi.model.SeasonResult;
+import com.formulaoneapi.service.DriverService;
+import com.formulaoneapi.validation.groups.IdValidation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.groups.Default;
 
 @RestController
 @RequestMapping("/drivers")
+@RequiredArgsConstructor
 public class DriverController {
 
-    @GetMapping("/")
-    public List<Driver> getAllDrivers() {
-        return List.of();
+    private final DriverService driverService;
+
+    @GetMapping
+    public Iterable<Driver> getAllDrivers() {
+        return driverService.getAll();
     }
 
-    @PostMapping("/")
-    public Driver saveDriver(@RequestBody Driver driver) {
-        return new Driver();
+    @PostMapping
+    public Driver saveDriver(@Validated({IdValidation.class, Default.class}) @RequestBody Driver driver) {
+        return driverService.save(driver);
     }
 
     @GetMapping("/{number}")
     public Driver getDriver(@PathVariable int number) {
-        return new Driver();
+        return driverService.get(number);
+    }
+
+    @PutMapping("/{number}")
+    public Driver updateDriver(@PathVariable int number,
+                               @Validated({Default.class}) @RequestBody Driver driver) {
+        driver.setNumber(number);
+        return driverService.update(driver);
     }
 
     @GetMapping("/{number}/accidents")
-    public List<DriverAccident> getDriverAccidents (@PathVariable int number) {
-        return List.of();
+    public Iterable<DriverAccident> getDriverAccidents (@PathVariable int number) {
+        return driverService.getAccidents(number);
     }
 
     @GetMapping("/{number}/season-results")
-    public List<SeasonResult> getDriverResults (@PathVariable int number) {
-        return List.of();
+    public Iterable<SeasonResult> getDriverResults (@PathVariable int number) {
+        return driverService.getResults(number);
     }
 }
