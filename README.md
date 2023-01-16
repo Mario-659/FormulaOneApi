@@ -41,11 +41,12 @@ API for DMS2 & SE application project
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [Getting Started](#getting-started)
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Installation](#installation)
+    * [Windows](#windows)
+    * [Linux](#linux)
+* [Demo](#demo)
 * [Endpoint Documentations](#endpoint-documentations)
 
 <!-- ABOUT THE PROJECT -->
@@ -58,39 +59,44 @@ Database API used by application for Formula 1 team.
 
 To get a local copy up and running follow these simple steps.
 
+<!-- PREREQUISITES -->
 ### Prerequisites
 
 To run API make sure you have Java SE 17 installed. Application requires 
 PostgreSQL Database Management System for data storage for this purpose you can use 
 local DMS installation or Docker service.
 
-### Installation (Docker) - Linux
+<!-- INSTALLATION -->
+### Installation (Docker) - Windows
 
 1. Clone the repo
 ```sh
 git clone https://github.com/Mario-659/FormulaOneApi.git && cd FormulaOneApi
 ```
-2. Make sure Docker daemon is up and running  
-3. Export environment variables needed for container set up or modify Intelij configuration options:
+2. Make sure Docker daemon is up and running
+3. Set environment variables needed for container set up or modify Intelij configuration options:
 ```sh
-export POSTGRES_USER=postgres
-export POSTGRES_PASSWORD=pass
-export POSTGRES_DB=f1api
+set POSTGRES_USER=admin
+set POSTGRES_PASSWORD=admin
+set POSTGRES_DB=f1api
 --------------------------
-export WORKING_DIR  # optional parameter used for postgres data storage (without every time initialization)
+set WORKING_DIR=<path>  # optional parameter used for postgres data storage (without every time initialization)
 ```
 4. Run database on Docker container in detached mode
 ```sh
 docker-compose up -d
 ```
-5. Set up environment variables needed for API-Docker connection. 
+5. Set up environment variables needed for API-Docker connection.
 ```sh
-export POSTGRES_URL=jdbc:postgresql://localhost:5432/{POSTGRES_DB}
-export POSTGRES_USERNAME=postgres  # has to match with POSTGRES_USER
+set POSTGRES_URL=jdbc:postgresql://localhost:5432/f1api
+set POSTGRES_USERNAME=postgres  # has to match with POSTGRES_USER
 ```
-6. Build an run project using Gradle tasks (Intelij)
+6. Build an run project using Gradle tasks (or use Intelij)
+```sh
+gradlew build && gradlew bootRun
+```
 7. Application should create connection and initialize database from predefined `import.sql` file
-8. Once app is running without any errors, do not close program. API is listening for requests.
+8. Once app is running without any errors, do not close program. API is running and waiting for requests.
 9. Test API with simple request like `http://localhost:8080/api/v1/drivers/23` output should looks like this:
 ```sh
 // http://localhost:8080/api/v1/drivers/23
@@ -106,6 +112,53 @@ export POSTGRES_USERNAME=postgres  # has to match with POSTGRES_USER
   "dateOfBirth": "1996-03-23"
 }
 ```
+
+### Installation (Docker) - Linux
+
+1. Clone the repo
+```sh
+git clone https://github.com/Mario-659/FormulaOneApi.git && cd FormulaOneApi
+```
+2. Make sure Docker daemon is up and running  
+3. Export environment variables needed for container set up or modify Intelij configuration options:
+```sh
+export POSTGRES_USER=postgres
+export POSTGRES_PASSWORD=admin
+export POSTGRES_DB=f1api
+--------------------------
+export WORKING_DIR  # optional parameter used for postgres data storage (without every time initialization)
+```
+4. Run database on Docker container in detached mode
+```sh
+docker-compose up -d
+```
+5. Set up environment variables needed for API-Docker connection. 
+```sh
+export POSTGRES_URL=jdbc:postgresql://localhost:5432/{POSTGRES_DB}
+export POSTGRES_USERNAME=postgres  # has to match with POSTGRES_USER
+```
+6. Build an run project using Gradle tasks (Intelij)
+```sh
+gradlew build && gradlew bootRun
+```
+7. Application should create connection and initialize database from predefined `import.sql` file
+8. Once app is running without any errors, do not close program. API is running and waiting for requests.
+9. Test API with simple request like `http://localhost:8080/api/v1/drivers/23` output should looks like this:
+```sh
+// http://localhost:8080/api/v1/drivers/23
+
+{
+  "number": 23,
+  "firstName": "Alexander",
+  "lastName": "Albon",
+  "nationality": "Thai",
+  "team": {
+    "name": "Williams Racing"
+  },
+  "dateOfBirth": "1996-03-23"
+}
+```
+
 <!-- Demo -->
 ### Demo
 
