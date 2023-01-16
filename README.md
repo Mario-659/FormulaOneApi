@@ -86,7 +86,7 @@ docker-compose up -d
 5. Set up environment variables needed for API-Docker connection. 
 ```sh
 export POSTGRES_URL=jdbc:postgresql://localhost:5432/{POSTGRES_DB}
-export POSTGRES_USERNAME=pass  # has to match with POSTGRES_USER
+export POSTGRES_USERNAME=postgres  # has to match with POSTGRES_USER
 ```
 6. Build an run project using Gradle tasks (Intelij)
 7. Application should create connection and initialize database from predefined `import.sql` file
