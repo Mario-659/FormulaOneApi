@@ -28,7 +28,7 @@ API for DMS2 & SE application project
 <a href="https://github.com/Mario-659/FormulaOneApi"><strong>Explore the docs »</strong></a>
 <br />
 <br />
-<a href="https://github.com/Mario-659/FormulaOneApi">View Demo</a>
+<a href="https://github.com/Mario-659/FormulaOneApi#demo">View Demo</a>
 ·
 <a href="https://github.com/Mario-659/FormulaOneApi/issues">Report Bug</a>
 ·
@@ -43,7 +43,8 @@ API for DMS2 & SE application project
 
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
-  * [Installation](#installation)
+  * [Prerequisites](#prerequisites) 
+* [Installation](#installation)
     * [Windows](#windows)
     * [Linux](#linux)
 * [Demo](#demo)
@@ -67,7 +68,9 @@ PostgreSQL Database Management System for data storage for this purpose you can 
 local DMS installation or Docker service.
 
 <!-- INSTALLATION -->
-### Installation (Docker) - Windows
+## Installation
+<!-- WINDOWS -->
+### Windows
 
 1. Clone the repo
 ```sh
@@ -113,7 +116,8 @@ gradlew build && gradlew bootRun
 }
 ```
 
-### Installation (Docker) - Linux
+<!-- LINUX -->
+### Linux
 
 1. Clone the repo
 ```sh
